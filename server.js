@@ -1,7 +1,7 @@
 const express = require("express");
 const router = require("./routes/routes");
-require("./database/mongo")
-require("./database/sql")
+//require("./database/mongo")
+require("./databases/sql")
 
 const app = express();
 
