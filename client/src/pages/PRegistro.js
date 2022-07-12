@@ -14,7 +14,7 @@ function PRegistro() {
   return (
 
      <div className="App">
-         <Header />  
+         <Header pagina2="registro"/>  
        <Registro/>        
      </div>
 

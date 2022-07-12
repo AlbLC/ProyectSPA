@@ -69,9 +69,4 @@ return (
 
 }
 
-
-
-
-
-
 export default Login;

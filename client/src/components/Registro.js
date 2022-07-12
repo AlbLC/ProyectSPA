@@ -49,7 +49,9 @@ const Registro = () => {
       //.then((response) => {console.log(response); setRegistro(response)})  
       .then((response) => {
         setInterval(() => {
-          window.location.assign("/");
+
+          window.location.assign("/login");
+
         }
           , 300);
       });

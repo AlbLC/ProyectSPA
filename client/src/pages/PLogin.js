@@ -14,7 +14,7 @@ function PLogin() {
   return (
 
      <div className="App">
-         <Header />  
+         <Header pagina1="login"/>  
        <Login/>        
      </div>
 
