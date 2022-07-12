@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../databases/sql');
 
-const Usuario = sequelize.define('usuario_pruebas', {
+const UsuariosPruebas = sequelize.define('usuario_pruebas', {
     id_usuario_pruebas: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -25,4 +25,4 @@ const Usuario = sequelize.define('usuario_pruebas', {
     allowNull: false,
   }, 
 });
-module.exports = Usuario;
+module.exports = UsuariosPruebas;

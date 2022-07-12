@@ -26,9 +26,23 @@ Es decir, lo que está más abajo en HTML*/
 
         fetch("login", requestOptions)
           .then((response) => response.json())
-          .then((response) =>setLogin(response))  
+          .then((response) => {
+            setInterval(() => {
+                if (response.message === true) {
+                    localStorage.setItem('user', JSON.stringify(
+                        response.username,
+                        
+                        
+                    ));
+                    window.location.assign("/");  //modificar 
+                } else {
+                    alert("Usuario o contraseña incorrectos")
+                }
+            }
+                , 300);
+        }); 
           
-          props.mandarImagen.bind(this, 5) 
+          //props.mandarImagen.bind(this, 5) 
         } 
 
 return (

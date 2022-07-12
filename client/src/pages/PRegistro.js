@@ -8,7 +8,7 @@ import Header from "../components/Header";
 
 
 //Componente funcional -> 
-function Registro() {
+function PRegistro() {
 
 
   return (
@@ -22,6 +22,6 @@ function Registro() {
 
 }
 
-export default Registro;
+export default PRegistro;
 
 
