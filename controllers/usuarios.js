@@ -211,6 +211,33 @@ const usuarios = {
     }
   },
 
+
+  verinfo: async (req, res) => {
+    try {
+      
+      const id_prueba = req.body.id
+      
+      //console.log(fecha)
+     
+      const prueba = await Prueba.findOne({
+        where: { id_prueba: id_prueba,
+          
+        }, 
+        //, fechaInicio: fechaI  `${fecha}` ...tipo: tipo,
+      });
+      console.log(prueba) 
+      //console.log(typeof prueba[0].dataValues.fechainicio)
+      
+        // res.json({
+        //   prueba
+        // });
+      
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+  },
+
 }
 
 
