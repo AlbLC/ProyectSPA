@@ -7,7 +7,6 @@ const mysql = require("mysql");
 const { Sequelize, Op } = require("sequelize");
 const { encrypt, compare } = require('../helpers/handleBcrypt');
 const UsuariosPruebas = require('../models/UsuariosPruebas');
-const Prueba = require('../models/Prueba');
 
 
 
@@ -45,7 +44,8 @@ const usuarios = {
             apellido: apellido,
             email: email,
             contrasena: passwordHash,
-            username: username
+            username: username,
+            empleado: false
           });
             //console.log(passwordHash)
           res.json({
@@ -139,6 +139,9 @@ const usuarios = {
       const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
       console.log(verificacion.dorsal)
       console.log(prueba)
+
+      res.json({dorsal: verificacion.dorsal,prueba: prueba})
+
       //console.log(usuarioLogin)
       //console.log(passwordLogin)
      /*  if (!usuario) {

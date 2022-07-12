@@ -1,6 +1,6 @@
 // importar React de la biblioteca.
 import React from 'react'; 
-import { useState,useEffect } from 'react';
+import { useState, useEffect} from 'react';
 
 
 const Verificacion = (props) => {
@@ -9,7 +9,9 @@ Es decir, lo que está más abajo en HTML*/
 
     const [id_usuario_pruebas, setId_usuario_pruebas] = useState("");
     const [tarjeta, setTarjeta] = useState("");
-    const [verificacion, setVerificacion] =  useState("");
+    const [prueba, setPrueba] =  useState("");
+    const [dorsal, setDorsal] =  useState("");
+    
    
    //OJO, ESTO VIENE DE LA TABLA DE LA RELACION USUSARIO-PRUEBAS
     const verificar = () => {
@@ -26,7 +28,11 @@ Es decir, lo que está más abajo en HTML*/
 
         fetch("verificacion", requestOptions)
           .then((response) => response.json())
-          .then((response) =>response.send(response))  
+          .then((response) =>{
+            setDorsal(response.dorsal)
+            setPrueba(response.prueba)
+            console.log(response.prueba)
+          })  
           //resultados saldrán en la consola
         } 
 
@@ -36,16 +42,25 @@ return (
     
   <div class="nick">
     <label for="exampleInputEmail1" class="form-label">Introduce el código de inscripción</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"onChange={(e) => setId_usuario_pruebas(e.target.value)}/>
+    <input type="text" class="form-control" onChange={(e) => setId_usuario_pruebas(e.target.value)}/>
     <div id="emailHelp" class="form-text"></div>
   </div>
   <div class="contrasena">
     <label for="exampleInputPassword1" class="form-label">Introduce tu número de tarjeta</label>
-    <input type="password" class="form-control" id="exampleInputPassword1"onChange={(e) => setTarjeta(e.target.value)}/>
+    <input type="password" class="form-control" onChange={(e) => setTarjeta(e.target.value)}/>
   </div>
  
   <button class="btn btn-dark" onClick={() => verificar()}>COMPROBAR</button>
-
+{dorsal==="" ? "": <div>
+<p>Verificación correcta, le corresponde el dorsal numero{dorsal}</p>
+<p>Datos de la prueba</p>
+<p>nombre: {prueba.nombreprueba}</p>  
+<p>tipo: {prueba.tipo}</p>
+<p>Fecha de inicio: {prueba.fechainicio}</p>
+<p>Fecha fin: {prueba.fechafin}</p>
+<p>Precio: {prueba.precio}</p>
+<p>Descripcion: {prueba.descripcion}</p>
+  </div>}
 
 
   </div>

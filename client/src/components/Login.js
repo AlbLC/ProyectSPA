@@ -29,7 +29,7 @@ const Login = (props) => {
       .then((response) => {
         setLogin(response.message)
         console.log(response.message)
-        setInterval(() => {
+       /* HEMOS QUITADO EL SET TIMER  */
           if (response.message === true) {
             localStorage.setItem('user', JSON.stringify(response.username ));
             
@@ -42,8 +42,7 @@ const Login = (props) => {
           } else {
             setLogin(response.message)
           }
-        }
-          , 300);
+        
       });
 
     //props.mandarImagen.bind(this, 5) 
