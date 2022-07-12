@@ -8,13 +8,13 @@ import Header from "../components/Header";
 
 
 //Componente funcional -> 
-function Login() {
+function PLogin() {
 
 
   return (
 
      <div className="App">
-         <Header />  
+         <Header pagina1="login"/>  
        <Login/>        
      </div>
 
@@ -22,6 +22,6 @@ function Login() {
 
 }
 
-export default Login;
+export default PLogin;
 
 

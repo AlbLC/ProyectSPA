@@ -14,7 +14,7 @@ function PHome() {
   return (
 
     <div className="App">
-       <Header />  
+       <Header pagina="home"/>  
       <Home/>       
     </div>
 
