@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const { Sequelize, Op } = require("sequelize");
 const { encrypt, compare } = require('../helpers/handleBcrypt');
 const UsuariosPruebas = require('../models/UsuariosPruebas');
-const Prueba = require('../models/Prueba');
+
 
 
 
@@ -182,8 +182,8 @@ const usuarios = {
 
   buscarpruebas: async (req, res) => {
     try {
-      //console.log(req)
-      const tipo = req.body.tipo
+      
+      const tipo = req.body.tipoPrueba
       var fechaI = new Date(req.body.fechaInicio);
       var fechaF = new Date(req.body.fechaFin);
       var fechaIn =fechaI.getFullYear() + '-' + (fechaI.getMonth() + 1) + '-' + fechaI.getDate();
@@ -198,7 +198,7 @@ const usuarios = {
         }, 
         //, fechaInicio: fechaI  `${fecha}` ...tipo: tipo,
       });
-      console.log(prueba) 
+      //console.log(prueba) 
       //console.log(typeof prueba[0].dataValues.fechainicio)
       
         res.json({
