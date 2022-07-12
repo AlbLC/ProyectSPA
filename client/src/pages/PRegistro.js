@@ -8,7 +8,7 @@ import Header from "../components/Header";
 
 
 //Componente funcional -> 
-function Login() {
+function Registro() {
 
 
   return (
@@ -22,6 +22,6 @@ function Login() {
 
 }
 
-export default Login;
+export default Registro;
 
 
