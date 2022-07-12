@@ -5,8 +5,8 @@ const connection = require("../databases/sql");
 const mysql = require("mysql");
 const Sequelize = require("sequelize");
 const { encrypt, compare } = require('../helpers/handleBcrypt');
-
-
+const UsuariosPruebas = require('../models/UsuariosPruebas');
+const Prueba = require('../models/Prueba');
 
 
 
@@ -22,7 +22,7 @@ const usuarios = {
       let username = req.body.username;
 
       const passwordHash = await encrypt(contrasena);
-      //bcrypt.hash(contrasena, 10, (err, palabraSecretaEncriptada));
+      
 
       const usuarioComprobacion = await Usuario.findOne({
         where: { email: email },
@@ -82,7 +82,7 @@ const usuarios = {
         where: { username: username },
         
       });
-      console.log(usuario.username)
+      
       //console.log(usuarioLogin)
       //console.log(passwordLogin)
       if (!usuario) {
@@ -101,6 +101,8 @@ const usuarios = {
         res.json({
           message: true,
           username: usuario.username, 
+          empleado: usuario.empleado
+          
           //nombre: usuario.nombre,
           //apellido: usuario.apellido,
           //rol: usuario.rol  
@@ -122,6 +124,60 @@ const usuarios = {
         res.send(error);
     }
   },
+  verificacion: async (req, res) => {
+    try {
+      const id_usuario_pruebas = req.body.id_usuario_pruebas
+      const tarjeta=req.body.tarjeta
+
+      //este ususario pruebas dice que no está definido.
+      const verificacion = await UsuariosPruebas.findOne({
+        where: { id_usuario_pruebas: id_usuario_pruebas, tarjeta:tarjeta }
+
+      });
+
+      const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
+      console.log(verificacion.dorsal)
+      console.log(prueba)
+      //console.log(usuarioLogin)
+      //console.log(passwordLogin)
+     /*  if (!usuario) {
+
+        //res.send("El usuario no existe");
+        res.json({
+          message: "El usuario no existe",
+        });
+      }
+      const checkPassword = await compare(passwordLogin, usuario.contrasena);
+
+      if (checkPassword) {
+
+        //res.send(Bienvenido ${usuario.nombre}. Login ok);
+
+        res.json({
+          message: true,
+          username: usuario.username, 
+          //nombre: usuario.nombre,
+          //apellido: usuario.apellido,
+          //rol: usuario.rol
+      })
+
+        //console.log(usuario)
+        // res.json({
+        //   message: Bienvenido ${usuario.nombre}. Login ok,
+        // });
+
+      } else {
+        //res.send("Contraseña erronea");
+        res.json({
+          message: Contraseña erronea,
+        });
+      } */
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+  },
+
 
 }
 
