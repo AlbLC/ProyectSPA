@@ -45,8 +45,10 @@ const Registro = () => {
       .then((response) => response.json())
      
       .then((response) => {
+
         setRegistro1(response.message)
        
+
       });
 
 

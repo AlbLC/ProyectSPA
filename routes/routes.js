@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const usuarios = require('../controllers/usuarios');
-const { registro, login, verificacion } = usuarios;
+const { registro, login, buscarpruebas, verificacion } = usuarios;
 
 
-router.post("/busqueda")
+
+router.post("/busqueda", buscarpruebas)
 router.post("/registro", registro)
 router.post("/login", login)
 router.post("/verificacion",verificacion)

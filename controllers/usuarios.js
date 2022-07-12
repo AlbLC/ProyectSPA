@@ -1,9 +1,10 @@
 
 
 const Usuario = require('../models/Usuario');
+const Prueba = require('../models/Prueba');
 const connection = require("../databases/sql");
 const mysql = require("mysql");
-const Sequelize = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 const { encrypt, compare } = require('../helpers/handleBcrypt');
 const UsuariosPruebas = require('../models/UsuariosPruebas');
 const Prueba = require('../models/Prueba');
@@ -178,6 +179,37 @@ const usuarios = {
     }
   },
 
+
+  buscarpruebas: async (req, res) => {
+    try {
+      //console.log(req)
+      const tipo = req.body.tipo
+      var fechaI = new Date(req.body.fechaInicio);
+      var fechaF = new Date(req.body.fechaFin);
+      var fechaIn =fechaI.getFullYear() + '-' + (fechaI.getMonth() + 1) + '-' + fechaI.getDate();
+      var fechaFi =fechaF.getFullYear() + '-' + (fechaF.getMonth() + 1) + '-' + fechaF.getDate();
+
+      //console.log(fecha)
+     
+      const prueba = await Prueba.findAll({
+        where: { tipo: tipo,
+          fechaInicio: {[Sequelize.Op.gt]: fechaIn},
+          fechaFin: {[Sequelize.Op.lt]: fechaFi},
+        }, 
+        //, fechaInicio: fechaI  `${fecha}` ...tipo: tipo,
+      });
+      console.log(prueba) 
+      //console.log(typeof prueba[0].dataValues.fechainicio)
+      
+        res.json({
+          prueba
+        });
+      
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+  },
 
 }
 
