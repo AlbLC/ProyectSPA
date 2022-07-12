@@ -20,21 +20,20 @@ Es decir, lo que está más abajo en HTML*/
           body: JSON.stringify( 
               {
                 id_usuario_pruebas:id_usuario_pruebas,
-              tarjeta:tarjeta,
+                tarjeta:tarjeta
           }),
         };
 
-        fetch("login", requestOptions)
+        fetch("verificacion", requestOptions)
           .then((response) => response.json())
-          .then((response) =>setVerificacion(response))  
-          
-          props.mandarImagen.bind(this, 5) //QUITAR DE AQUI????????????????
+          .then((response) =>response.send(response))  
+          //resultados saldrán en la consola
         } 
 
 return (
 
 <div id='login'>
-    VER SI EL EVENTO SIGUE DISPONIBLE :
+    
   <div class="nick">
     <label for="exampleInputEmail1" class="form-label">Introduce el código de inscripción</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"onChange={(e) => setId_usuario_pruebas(e.target.value)}/>
@@ -45,7 +44,7 @@ return (
     <input type="password" class="form-control" id="exampleInputPassword1"onChange={(e) => setTarjeta(e.target.value)}/>
   </div>
  
-  <button class="btn btn-dark" onClick={() => entrar()}>COMPROBAR</button>
+  <button class="btn btn-dark" onClick={() => verificar()}>COMPROBAR</button>
 
 
 

@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import PHome from "../pages/PHome";
 import PLogin from "../pages/PLogin";
 import PRegistro from "../pages/PRegistro";
-
+import PVerificacion from "../pages/PVerificacion";
 
 class Main extends Component {
 
@@ -15,7 +15,7 @@ class Main extends Component {
                 <Route path="/" element={<PHome />} />
                 <Route path="/login" element={<PLogin />} />
                 <Route path="/registro" element={<PRegistro />} />
-
+                <Route path="/verificacion" element={<PVerificacion />} />
             </Routes>
         </div>
         );
