@@ -1,27 +1,29 @@
 
 
 import React , {Component} from "react"
-import Login from "../components/Login";
+import Verificacion from "../components/Verificacion";
 import Header from "../components/Header";
 
 
 
 
 //Componente funcional -> 
-function PLogin() {
+function PVerificacion() {
+
+
 
 
   return (
 
      <div className="App">
-         <Header pagina1="login"/>  
-       <Login/>        
+          
+       <Verificacion/>        
      </div>
 
   );
 
 }
 
-export default PLogin;
+export default PVerificacion;
 
 

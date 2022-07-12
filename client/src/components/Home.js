@@ -8,6 +8,7 @@ function Home() {
     const [tipoPrueba, setTipoPrueba] = useState("");
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFin, setFechaFin] = useState("");
+    const [busqueda,setBusqueda]= useState("");
 
 
 const sendBusqueda = () => {
@@ -20,7 +21,7 @@ const sendBusqueda = () => {
     fetch("busqueda", requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        console.log("aqui")
+        setBusqueda(res.anonimo)
         
       });
 }
@@ -35,7 +36,12 @@ const sendBusqueda = () => {
           <input type="date" onChange={(e) => setFechaInicio(e.target.value)} />
           <label>Fecha fin </label>
           <input type="date" onChange={(e) => setFechaFin(e.target.value)} />
+          <p></p>
           <button onClick={() => sendBusqueda()}>Buscar</button>
+
+          {busqueda != "" ? <div>
+            
+          </div> : ""}
         
     
 </div>

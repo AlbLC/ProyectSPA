@@ -28,5 +28,9 @@ const Usuario = sequelize.define('usuarios', {
     type: Sequelize.STRING,
     allowNull: false,
   }, 
+  empleado: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+  },
 });
 module.exports = Usuario;

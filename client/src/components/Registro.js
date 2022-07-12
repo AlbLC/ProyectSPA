@@ -17,18 +17,15 @@ const Registro = () => {
   const [email, setEmail] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [username, setUsername] = useState("");
-  const [registro, setRegistro] = useState("");
+  const [registro1, setRegistro1] = useState("");
   
+  useEffect(() => {
+   if (registro1 != ""&&registro1!="El usuario existe") {
+     navigate('/login')
+   }
+  }, [registro1]);
 
-  // useEffect(() => {
-  //   if (registro){
-  //   //TAL VEZ NO SEA NECESARIO EL USEEFFECT PARA USAR EL NAVIGATION
-  //   //TAL VEZ NO SEA NECESARIO EL USEEFFECT PARA USAR EL NAVIGATION
 
-
-  //   navigate('/perfil'); 
-  //   }
-  //       },[registro])
 
   const enviar = () => {
 
@@ -46,7 +43,11 @@ const Registro = () => {
     };
     fetch("registro", requestOptions)
       .then((response) => response.json())
-      .then((response) =>setRegistro(response))  
+     
+      .then((response) => {
+        setRegistro1(response.message)
+       
+      });
 
 
   };
@@ -68,7 +69,7 @@ const Registro = () => {
 
           <label>Username</label>
           <input type="text" placeholder="Pon tu username" onChange={(e) => setUsername(e.target.value)} />
-          
+          <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
 
 
           
