@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const { Sequelize, Op } = require("sequelize");
 const { encrypt, compare } = require('../helpers/handleBcrypt');
 const UsuariosPruebas = require('../models/UsuariosPruebas');
-const Prueba = require('../models/Prueba');
+
 
 
 
