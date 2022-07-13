@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from "react";
 import { Link,useNavigate } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 
 
@@ -56,8 +57,8 @@ const Registro = () => {
 
   return (
    
-    <div>
-          <label>Nombre</label>
+    <div id="registro">
+         {/*  <label>Nombre</label>
           <input type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
 
           <label>Apellido</label>
@@ -76,6 +77,64 @@ const Registro = () => {
 
           
           <button class="btn btn-dark" onClick={() => enviar()}>Registrarse</button>
+ */}
+
+          <Form>
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>Nombre</Form.Label>
+        <Form.Control type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
+        <Form.Text className="text-muted">
+         
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>Apellido</Form.Label>
+        <Form.Control type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
+
+      </Form.Group>
+
+      
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
+
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} /> 
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>UserName</Form.Label>
+        <Form.Control type="text" placeholder="Pon tu UserName" onChange={(e) => setUsername(e.target.value)} />
+
+      </Form.Group>
+      
+      <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
+
+
+
+      <Button variant="primary"  onClick={() => enviar()}>
+        Registrarse
+      </Button>
+
+      
+    </Form>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 }
