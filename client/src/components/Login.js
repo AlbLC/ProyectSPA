@@ -31,7 +31,7 @@ const Login = (props) => {
         console.log(response.message)
        /* HEMOS QUITADO EL SET TIMER  */
           if (response.message === true) {
-            localStorage.setItem('user', JSON.stringify(response.username ));
+            localStorage.setItem('user', response.username );
             
             if (response.empleado === true) {
                 navigate("/verificacion")
