@@ -31,7 +31,13 @@ function Header(props) {
 
                     {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<Button variant="dark"  onClick={() => sendDesconectar()}>desconectar</Button>}
 
+
                    {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/editarPerfil"} className="buttonHome">Editar perfil</Link></Button>}
+
+
+                   
+                   
+                   {props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<button className="buttonHome"><Link to={"/historial"} className="buttonHome">Historial</Link></button>}
 
                 </div>
                 

@@ -139,8 +139,9 @@ const inscribir = (idprueba) => {
                 <Card.Text>{descripcion.fechainicio} </Card.Text>
                 <Card.Text>{descripcion.fechafin} </Card.Text>
                 <Card.Text>{descripcion.descripcion} </Card.Text>
-                <Card.Text>Para inscribirte introduce tu numero de tarjeta </Card.Text>
-                <input type="text" onChange={(e) => setTarjeta(e.target.value)}/>
+                <Card.Text>Plazas disponible {descripcion.participantes_max} </Card.Text>
+                {usuario==null?"":<Card.Text>Para inscribirte introduce tu numero de tarjeta </Card.Text>}
+                {usuario==null?"":<input type="text" onChange={(e) => setTarjeta(e.target.value)}/>}
                   { tarjeta===""?"":<Button onClick={() => inscribir(descripcion.id_prueba)} variant="info">Inscribete</Button>  } 
               </Card.Body>
             </Card>

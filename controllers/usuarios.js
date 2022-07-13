@@ -140,12 +140,12 @@ const usuarios = {
       });
 
 
-      const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
+      const prueba = await Prueba.findOne({ where: { id_prueba: verificacion.fk_pruebas } })
       console.log(verificacion)
       console.log(prueba)
 
 
-      res.json({dorsal: verificacion, prueba: prueba})
+      res.json({ dorsal: verificacion, prueba: prueba })
 
 
       //console.log(usuarioLogin)
@@ -252,60 +252,120 @@ const usuarios = {
     const usuario = await Usuario.findOne({
       where: { username: req.body.user }
     });
-
+    const prueba = await Prueba.findOne({
+      where: { id_prueba: req.body.idprueba }
+    });
+    console.log(prueba.participantes_max)
     const yaregistrado = await UsuariosPruebas.findOne({
-      where: { fk_usuario: usuario.id_usuario, fk_pruebas: req.body.idprueba}
+      where: { fk_usuario: usuario.id_usuario, fk_pruebas: req.body.idprueba }
     });
 
-if(yaregistrado==null){
+    if (prueba.participantes_max > 0) {
+      if (yaregistrado == null) {
+        
 
 
-    const inscripcion = UsuariosPruebas.create({
-      fk_usuario: usuario.id_usuario,
-      fk_pruebas: req.body.idprueba,
-      tarjeta: req.body.tarjeta,
-      dorsal: "1"
+        const inscripcion = UsuariosPruebas.create({
+          fk_usuario: usuario.id_usuario,
+          fk_pruebas: req.body.idprueba,
+          tarjeta: req.body.tarjeta,
+          dorsal: prueba.participantes_max,
+          estado: false
 
-    });
+        });
+        const actualizarparticipantes = await Prueba.update({ participantes_max: `${prueba.participantes_max}`-1 }, {
+          where: { id_prueba: req.body.idprueba },
+        });
 
-    res.json(true)
-  }else{
-    res.json(false)
-  }
+
+        res.json(true)
+      } else {
+        res.json(false)
+      }
+    }else{res.json("sin plazas")}
   },
 
   entregar: async (req, res) => {
     try {
       //console.log(req.body.numeroInscripcion)
       const numInscripcion = req.body.numeroInscripcion
-      
-      const entregar = await UsuariosPruebas.update({estado: true},{
+
+      const entregar = await UsuariosPruebas.update({ estado: true }, {
         where: { id_usuario_pruebas: numInscripcion },
       });
-      
+
       const id_usuario_pruebas = req.body.id_usuario_pruebas  //tambien numero de inscripcion
-      const tarjeta=req.body.tarjeta
+      const tarjeta = req.body.tarjeta
 
       //este ususario pruebas dice que no está definido.
       const verificacion = await UsuariosPruebas.findOne({
-        where: { id_usuario_pruebas: id_usuario_pruebas, tarjeta:tarjeta }
+        where: { id_usuario_pruebas: id_usuario_pruebas, tarjeta: tarjeta }
 
       });
 
-      const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
+      const prueba = await Prueba.findOne({ where: { id_prueba: verificacion.fk_pruebas } })
       console.log(verificacion)
       console.log(prueba)
 
 
-      res.json({dorsal: verificacion, prueba: prueba})
-     
-      
+      res.json({ dorsal: verificacion, prueba: prueba })
+
+
     } catch (error) {
-        console.error(error);
-        res.send(error);
+      console.error(error);
+      res.send(error);
     }
   },
 
+  historial: async (req, res) => {
+    
+    try {
+
+      //guardamos el usuario que esa logeado
+      const usuario = await Usuario.findOne({
+        where: { username: req.body.user }
+      });
+     
+      
+
+  
+      //guardamos las fk del usuario que esta loqueado
+      const fkpruebas = await UsuariosPruebas.findAll({
+        where: { fk_usuario: usuario.id_usuario}
+
+      });
+
+
+      
+      
+      let datosHistorial = [];
+      for (let i = 0; i < fkpruebas.length; i++) {
+       let historial = await Prueba.findOne({ where: { id_prueba: fkpruebas[i].fk_pruebas } });
+        //console.log(historial.dataValues)
+        
+         let data = {
+           fechainicio: historial.dataValues.fechainicio,
+           fechafin: historial.dataValues.fechafin,
+           nombreprueba: historial.dataValues.nombreprueba,
+           precio: historial.dataValues.precio,
+           tipo: historial.dataValues.tipo,
+           descripcion: historial.dataValues.descripcion,
+           id_prueba: historial.dataValues.id_prueba,
+           dorsal: fkpruebas[i].dorsal
+         }
+        datosHistorial.push(data)
+      }
+      
+
+      //console.log(datosHistorial)
+      res.json({ datosHistorial })
+
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
 
 }
 

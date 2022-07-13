@@ -4,6 +4,8 @@ import PHome from "../pages/PHome";
 import PLogin from "../pages/PLogin";
 import PRegistro from "../pages/PRegistro";
 import PVerificacion from "../pages/PVerificacion";
+import PHistorial from "../pages/PHistorial";
+
 
 class Main extends Component {
 
@@ -16,6 +18,7 @@ class Main extends Component {
                 <Route path="/login" element={<PLogin />} />
                 <Route path="/registro" element={<PRegistro />} />
                 <Route path="/verificacion" element={<PVerificacion />} />
+                <Route path="/historial" element={<PHistorial />} />
             </Routes>
         </div>
         );
