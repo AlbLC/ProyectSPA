@@ -24,5 +24,9 @@ const UsuariosPruebas = sequelize.define('usuario_pruebas', {
     type: Sequelize.STRING,
     allowNull: false,
   }, 
+  estado: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+  }, 
 });
 module.exports = UsuariosPruebas;

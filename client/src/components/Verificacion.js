@@ -31,10 +31,35 @@ Es decir, lo que está más abajo en HTML*/
           .then((response) =>{
             setDorsal(response.dorsal)
             setPrueba(response.prueba)
-            console.log(response.prueba)
+            console.log(response.dorsal)
           })  
           //resultados saldrán en la consola
         } 
+
+        const entregar = (inscripcion) => {
+           
+          const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify( 
+                {
+                  numeroInscripcion:inscripcion,
+                  id_usuario_pruebas:id_usuario_pruebas,
+                tarjeta:tarjeta
+                  
+            }),
+          };
+          console.log(requestOptions)
+          fetch("entregar", requestOptions)
+          .then((response) => response.json())
+          .then((response) =>{
+               setDorsal(response.dorsal)
+               setPrueba(response.prueba)
+          console.log(response.dorsal)
+          })  
+            //resultados saldrán en la consola
+          } 
+
 
 return (
 
@@ -51,8 +76,11 @@ return (
   </div>
  
   <button class="btn btn-dark" onClick={() => verificar()}>COMPROBAR</button>
-{dorsal==="" ? "": <div>
-<p>Verificación correcta, le corresponde el dorsal numero{dorsal}</p>
+{dorsal=="" ? "": 
+
+  dorsal.estado ?
+<div>
+<p>El dorsal con el numero {dorsal.dorsal} ya esta entregado</p>
 <p>Datos de la prueba</p>
 <p>nombre: {prueba.nombreprueba}</p>  
 <p>tipo: {prueba.tipo}</p>
@@ -60,9 +88,20 @@ return (
 <p>Fecha fin: {prueba.fechafin}</p>
 <p>Precio: {prueba.precio}</p>
 <p>Descripcion: {prueba.descripcion}</p>
-  </div>}
+  </div>
+  : <div>
+  <p>Verificación correcta, le corresponde el dorsal numero {dorsal.dorsal}</p>
+  <p>Datos de la prueba</p>
+  <p>nombre: {prueba.nombreprueba}</p>  
+  <p>tipo: {prueba.tipo}</p>
+  <p>Fecha de inicio: {prueba.fechainicio}</p>
+  <p>Fecha fin: {prueba.fechafin}</p>
+  <p>Precio: {prueba.precio}</p>
+  <p>Descripcion: {prueba.descripcion}</p>
+  <button class="btn btn-dark" onClick={() => entregar(dorsal.dorsal)}>Entregar</button>
+    </div>
 
-
+}
   </div>
 
     )
