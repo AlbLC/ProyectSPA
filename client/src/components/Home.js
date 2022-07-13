@@ -9,21 +9,23 @@ function Home() {
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFin, setFechaFin] = useState("");
     const [busqueda,setBusqueda]= useState("");
+    
+
 
 
   const verinfo = (id) => {
-      console.log(id)
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      };
-      fetch("verinfo", requestOptions)
-      .then((response) => response.json())
-      .then((response) => {console.log(response.prueba);
-        setBusqueda(response.prueba)
+      console.log(busqueda[id].descripcion)
+      // const requestOptions = {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ id }),
+      // };
+      // fetch("verinfo", requestOptions)
+      // .then((response) => response.json())
+      // .then((response) => {console.log(response.prueba);
+      //   setBusqueda(response.prueba)
         
-      });
+      // });
       
       
   }
@@ -81,7 +83,7 @@ const sendBusqueda = () => {
                 <Card.Text>{busqued.tipo}</Card.Text>
                 <Card.Text>{busqued.precio} €</Card.Text>
                 
-                <Button onClick={() => verinfo(busqued.id_prueba)} variant="info">Info</Button>
+                <Button onClick={() => verinfo(i)} variant="info">Info</Button>
               </Card.Body>
             </Card>
           )
