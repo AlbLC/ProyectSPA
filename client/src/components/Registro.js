@@ -58,24 +58,24 @@ const Registro = () => {
    
     <div>
           <label>Nombre</label>
-          <input type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
+          <input id="nombre" type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
 
           <label>Apellido</label>
-          <input type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
+          <input id="apellido" type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
 
           <label>Email</label>
-          <input type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
+          <input id="email" type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
 
           <label>Contraseña</label>
-          <input type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} />
+          <input id="contrasena" type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} />
 
           <label>Username</label>
-          <input type="text" placeholder="Pon tu username" onChange={(e) => setUsername(e.target.value)} />
+          <input id="username" type="text" placeholder="Pon tu username" onChange={(e) => setUsername(e.target.value)} />
           <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
 
 
           
-          <button class="btn btn-dark" onClick={() => enviar()}>Registrarse</button>
+          <button id="boton" class="btn btn-dark" onClick={() => enviar()}>Registrarse</button>
     </div>
   );
 }
