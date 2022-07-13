@@ -12,7 +12,7 @@ const UsuariosPruebas = require('../models/UsuariosPruebas');
 
 
 const usuarios = {
-  
+
   registro: async (req, res) => {
 
     try {
@@ -23,7 +23,7 @@ const usuarios = {
       let username = req.body.username;
 
       const passwordHash = await encrypt(contrasena);
-      
+
 
       const usuarioComprobacion = await Usuario.findOne({
         where: { email: email },
@@ -38,7 +38,7 @@ const usuarios = {
           email.match(
             /^[a-zA-Z0-9_\-\.~]{2,}@[a-zA-Z0-9_\-\.~]{2,}\.[a-zA-Z]{2,4}$/)
           && username.match(/^([A-Za-z]{1,15})$/)) {
-            
+
 
           const usuario = Usuario.create({
             nombre: nombre,
@@ -48,12 +48,12 @@ const usuarios = {
             username: username,
             empleado: false
           });
-            //console.log(passwordHash)
+          //console.log(passwordHash)
           res.json({
             usuario: username,
           });
 
-          
+
         } else {
           res.json({
             message: "Datos invalidos",
@@ -82,13 +82,13 @@ const usuarios = {
       //const { usuarioLogin, passwordLogin } = req.body;
       const usuario = await Usuario.findOne({
         where: { username: username },
-        
+
       });
-      
+
       //console.log(usuarioLogin)
       //console.log(passwordLogin)
       if (!usuario) {
-      
+
         //res.send("El usuario no existe");
         res.json({
           message: "El usuario no existe",
@@ -97,18 +97,18 @@ const usuarios = {
       const checkPassword = await compare(passwordLogin, usuario.contrasena);
 
       if (checkPassword) {
-        
+
         //res.send(`Bienvenido ${usuario.nombre}. Login ok`);
-        
+
         res.json({
           message: true,
-          username: usuario.username, 
+          username: usuario.username,
           empleado: usuario.empleado
-          
+
           //nombre: usuario.nombre,
           //apellido: usuario.apellido,
           //rol: usuario.rol  
-      })
+        })
 
         //console.log(usuario)
         // res.json({
@@ -122,126 +122,151 @@ const usuarios = {
         });
       }
     } catch (error) {
-        console.error(error);
-        res.send(error);
+      console.error(error);
+      res.send(error);
     }
   },
   verificacion: async (req, res) => {
     try {
       const id_usuario_pruebas = req.body.id_usuario_pruebas
-      const tarjeta=req.body.tarjeta
+      const tarjeta = req.body.tarjeta
 
       //este ususario pruebas dice que no está definido.
       const verificacion = await UsuariosPruebas.findOne({
-        where: { id_usuario_pruebas: id_usuario_pruebas, tarjeta:tarjeta }
+        where: { id_usuario_pruebas: id_usuario_pruebas, tarjeta: tarjeta }
 
       });
 
-      const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
+      const prueba = await Prueba.findOne({ where: { id_prueba: verificacion.fk_pruebas } })
       console.log(verificacion.dorsal)
       console.log(prueba)
 
-      res.json({dorsal: verificacion.dorsal,prueba: prueba})
+      res.json({ dorsal: verificacion.dorsal, prueba: prueba })
 
       //console.log(usuarioLogin)
       //console.log(passwordLogin)
-     /*  if (!usuario) {
-
-        //res.send("El usuario no existe");
-        res.json({
-          message: "El usuario no existe",
-        });
-      }
-      const checkPassword = await compare(passwordLogin, usuario.contrasena);
-
-      if (checkPassword) {
-
-        //res.send(Bienvenido ${usuario.nombre}. Login ok);
-
-        res.json({
-          message: true,
-          username: usuario.username, 
-          //nombre: usuario.nombre,
-          //apellido: usuario.apellido,
-          //rol: usuario.rol
-      })
-
-        //console.log(usuario)
-        // res.json({
-        //   message: Bienvenido ${usuario.nombre}. Login ok,
-        // });
-
-      } else {
-        //res.send("Contraseña erronea");
-        res.json({
-          message: Contraseña erronea,
-        });
-      } */
+      /*  if (!usuario) {
+ 
+         //res.send("El usuario no existe");
+         res.json({
+           message: "El usuario no existe",
+         });
+       }
+       const checkPassword = await compare(passwordLogin, usuario.contrasena);
+ 
+       if (checkPassword) {
+ 
+         //res.send(Bienvenido ${usuario.nombre}. Login ok);
+ 
+         res.json({
+           message: true,
+           username: usuario.username, 
+           //nombre: usuario.nombre,
+           //apellido: usuario.apellido,
+           //rol: usuario.rol
+       })
+ 
+         //console.log(usuario)
+         // res.json({
+         //   message: Bienvenido ${usuario.nombre}. Login ok,
+         // });
+ 
+       } else {
+         //res.send("Contraseña erronea");
+         res.json({
+           message: Contraseña erronea,
+         });
+       } */
     } catch (error) {
-        console.error(error);
-        res.send(error);
+      console.error(error);
+      res.send(error);
     }
   },
 
 
   buscarpruebas: async (req, res) => {
     try {
-      
+
       const tipo = req.body.tipoPrueba
       var fechaI = new Date(req.body.fechaInicio);
       var fechaF = new Date(req.body.fechaFin);
-      var fechaIn =fechaI.getFullYear() + '-' + (fechaI.getMonth() + 1) + '-' + fechaI.getDate();
-      var fechaFi =fechaF.getFullYear() + '-' + (fechaF.getMonth() + 1) + '-' + fechaF.getDate();
+      var fechaIn = fechaI.getFullYear() + '-' + (fechaI.getMonth() + 1) + '-' + fechaI.getDate();
+      var fechaFi = fechaF.getFullYear() + '-' + (fechaF.getMonth() + 1) + '-' + fechaF.getDate();
 
       //console.log(fecha)
-     
+
       const prueba = await Prueba.findAll({
-        where: { tipo: tipo,
-          fechaInicio: {[Sequelize.Op.gt]: fechaIn},
-          fechaFin: {[Sequelize.Op.lt]: fechaFi},
-        }, 
+        where: {
+          tipo: tipo,
+          fechaInicio: { [Sequelize.Op.gt]: fechaIn },
+          fechaFin: { [Sequelize.Op.lt]: fechaFi },
+        },
         //, fechaInicio: fechaI  `${fecha}` ...tipo: tipo,
       });
       //console.log(prueba) 
       //console.log(typeof prueba[0].dataValues.fechainicio)
-      
-        res.json({
-          prueba
-        });
-      
+
+      res.json({
+        prueba
+      });
+
     } catch (error) {
-        console.error(error);
-        res.send(error);
+      console.error(error);
+      res.send(error);
     }
   },
 
 
   verinfo: async (req, res) => {
     try {
-      
+
       const id_prueba = req.body.id
-      
+
       //console.log(fecha)
-     
+
       const prueba = await Prueba.findOne({
-        where: { id_prueba: id_prueba,
-          
-        }, 
+        where: {
+          id_prueba: id_prueba,
+
+        },
         //, fechaInicio: fechaI  `${fecha}` ...tipo: tipo,
       });
-      console.log(prueba) 
+      console.log(prueba)
       //console.log(typeof prueba[0].dataValues.fechainicio)
-      
-        // res.json({
-        //   prueba
-        // });
-      
+
+      // res.json({
+      //   prueba
+      // });
+
     } catch (error) {
-        console.error(error);
-        res.send(error);
+      console.error(error);
+      res.send(error);
     }
   },
+  inscribirse: async (req, res) => {
+    const usuario = await Usuario.findOne({
+      where: { username: req.body.user }
+    });
 
+    const yaregistrado = await UsuariosPruebas.findOne({
+      where: { fk_usuario: usuario.id_usuario, fk_pruebas: req.body.idprueba}
+    });
+
+if(yaregistrado==null){
+
+    const inscripcion = UsuariosPruebas.create({
+      fk_usuario: usuario.id_usuario,
+      fk_pruebas: req.body.idprueba,
+      tarjeta: req.body.tarjeta,
+      dorsal: "1"
+
+    });
+
+    res.json(true)
+  }else{
+    res.json(false)
+  }
+  },
 }
 
 

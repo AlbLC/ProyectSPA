@@ -4,17 +4,29 @@ import React, { useState, useEffect } from "react";
 
 //Componente funcional -> 
 function Home() {
-
+  var usuario = localStorage.getItem("user")
     const [tipoPrueba, setTipoPrueba] = useState("");
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFin, setFechaFin] = useState("");
-    const [busqueda,setBusqueda]= useState("");
-    
+    const [busqueda,setBusqueda] = useState("");
+    const [descripcion,setDescripcion] = useState("")
+    const [info,setInfo] = useState("");
+    const [user,setUser] = useState(usuario);
+    const [tarjeta,setTarjeta] = useState("");
+    const [yainscrito,setYainscrito] = useState("");
 
+ 
+   
+ 
 
 
   const verinfo = (id) => {
-      console.log(busqueda[id].descripcion)
+    setInfo(true)
+      setDescripcion(busqueda[id])
+
+
+
+
       // const requestOptions = {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
@@ -50,6 +62,25 @@ const sendBusqueda = () => {
       });
 }
 
+const inscribir = (idprueba) => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idprueba, user, tarjeta }),
+  };
+
+  
+  fetch("inscribirse", requestOptions)
+    .then((response) => response.json())
+    .then((response) => {
+     setYainscrito(response)
+      
+      
+    });
+
+}
+
+
 
     return (
 <div>
@@ -68,7 +99,7 @@ const sendBusqueda = () => {
           <input type="date" onChange={(e) => setFechaInicio(e.target.value)} />
           <label>Fecha fin </label>
           <input type="date" onChange={(e) => setFechaFin(e.target.value)} />
-          <p></p>
+          {yainscrito===true?<p>inscrito correctamente</p>:yainscrito===false?<p>ya te as inscrito</p>:<p></p>}
           <button onClick={() => sendBusqueda()}>Buscar</button>
 
           
@@ -91,7 +122,23 @@ const sendBusqueda = () => {
             
         </div>}
         
-    
+    {info===true ? <div>
+      <Card style={{ width: '18rem' }} key={descripcion.id_prueba}>
+              
+
+              <Card.Body>
+                <Card.Title>{descripcion.nombreprueba}</Card.Title>
+                <Card.Text>{descripcion.tipo}</Card.Text>
+                <Card.Text>{descripcion.precio} </Card.Text>
+                <Card.Text>{descripcion.fechainicio} </Card.Text>
+                <Card.Text>{descripcion.fechafin} </Card.Text>
+                <Card.Text>{descripcion.descripcion} </Card.Text>
+                <Card.Text>Para inscribirte introduce tu numero de tarjeta </Card.Text>
+                <input type="text" onChange={(e) => setTarjeta(e.target.value)}/>
+                  { tarjeta===""?"":<Button onClick={() => inscribir(descripcion.id_prueba)} variant="info">Inscribete</Button>  } 
+              </Card.Body>
+            </Card>
+    </div>:""}
 </div>
     );
 
