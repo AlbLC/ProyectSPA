@@ -128,8 +128,10 @@ const usuarios = {
   },
   verificacion: async (req, res) => {
     try {
+
       const id_usuario_pruebas = req.body.id_usuario_pruebas
       const tarjeta = req.body.tarjeta
+
 
       //este ususario pruebas dice que no está definido.
       const verificacion = await UsuariosPruebas.findOne({
@@ -137,11 +139,14 @@ const usuarios = {
 
       });
 
-      const prueba = await Prueba.findOne({ where: { id_prueba: verificacion.fk_pruebas } })
-      console.log(verificacion.dorsal)
+
+      const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
+      console.log(verificacion)
       console.log(prueba)
 
-      res.json({ dorsal: verificacion.dorsal, prueba: prueba })
+
+      res.json({dorsal: verificacion, prueba: prueba})
+
 
       //console.log(usuarioLogin)
       //console.log(passwordLogin)
@@ -254,6 +259,7 @@ const usuarios = {
 
 if(yaregistrado==null){
 
+
     const inscripcion = UsuariosPruebas.create({
       fk_usuario: usuario.id_usuario,
       fk_pruebas: req.body.idprueba,
@@ -267,6 +273,40 @@ if(yaregistrado==null){
     res.json(false)
   }
   },
+
+  entregar: async (req, res) => {
+    try {
+      //console.log(req.body.numeroInscripcion)
+      const numInscripcion = req.body.numeroInscripcion
+      
+      const entregar = await UsuariosPruebas.update({estado: true},{
+        where: { id_usuario_pruebas: numInscripcion },
+      });
+      
+      const id_usuario_pruebas = req.body.id_usuario_pruebas  //tambien numero de inscripcion
+      const tarjeta=req.body.tarjeta
+
+      //este ususario pruebas dice que no está definido.
+      const verificacion = await UsuariosPruebas.findOne({
+        where: { id_usuario_pruebas: id_usuario_pruebas, tarjeta:tarjeta }
+
+      });
+
+      const prueba = await Prueba.findOne({where :{id_prueba: verificacion.fk_pruebas}})
+      console.log(verificacion)
+      console.log(prueba)
+
+
+      res.json({dorsal: verificacion, prueba: prueba})
+     
+      
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+  },
+
+
 }
 
 
