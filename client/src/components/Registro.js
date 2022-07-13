@@ -57,32 +57,14 @@ const Registro = () => {
 
   return (
    
+
     <div id="registro">
-         {/*  <label>Nombre</label>
-          <input type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
-
-          <label>Apellido</label>
-          <input type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
-
-          <label>Email</label>
-          <input type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
-
-          <label>Contraseña</label>
-          <input type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} />
-
-          <label>Username</label>
-          <input type="text" placeholder="Pon tu username" onChange={(e) => setUsername(e.target.value)} />
-          <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
-
-
-          
-          <button class="btn btn-dark" onClick={() => enviar()}>Registrarse</button>
- */}
+     
 
           <Form>
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Nombre</Form.Label>
-        <Form.Control type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
+        <Form.Control id="nombre" type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
         <Form.Text className="text-muted">
          
         </Form.Text>
@@ -90,25 +72,25 @@ const Registro = () => {
 
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Apellido</Form.Label>
-        <Form.Control type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
+        <Form.Control id="apellido" type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
 
       </Form.Group>
 
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
-        <Form.Control type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
+        <Form.Control id="email" type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
 
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Contraseña</Form.Label>
-        <Form.Control type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} /> 
+        <Form.Control id="contrasena" type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} /> 
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="">
         <Form.Label>UserName</Form.Label>
-        <Form.Control type="text" placeholder="Pon tu UserName" onChange={(e) => setUsername(e.target.value)} />
+        <Form.Control id="username" type="text" placeholder="Pon tu UserName" onChange={(e) => setUsername(e.target.value)} />
 
       </Form.Group>
       
@@ -122,18 +104,6 @@ const Registro = () => {
 
       
     </Form>
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
   );
