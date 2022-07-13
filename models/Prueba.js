@@ -32,5 +32,9 @@ const Prueba = sequelize.define('pruebas', {
     type: Sequelize.STRING,
     allowNull: false,
   }, 
+  participantes_max: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  }, 
 });
 module.exports = Prueba;
