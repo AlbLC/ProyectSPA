@@ -37,7 +37,7 @@ function Header(props) {
 
                    
                    
-                   {props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<button className="buttonHome"><Link to={"/historial"} className="buttonHome">Historial</Link></button>}
+                   {props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<Button variant="light" size="lg" className="buttonHome"><Link to={"/historial"} className="buttonHome">Historial</Link></Button>}
 
                 </div>
                 
