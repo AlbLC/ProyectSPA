@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const usuarios = require('../controllers/usuarios');
 
-const { registro, login, buscarpruebas, verificacion, verinfo, inscribirse, entregar } = usuarios;
+const { registro, login, buscarpruebas, verificacion, verinfo, inscribirse, entregar, historial } = usuarios;
 
 
 
@@ -13,6 +13,7 @@ router.post("/verificacion",verificacion)
 router.post("/verinfo",verinfo)
 router.post("/inscribirse",inscribirse)
 router.post("/entregar",entregar)
+router.post("/historial",historial)
 
 
 
