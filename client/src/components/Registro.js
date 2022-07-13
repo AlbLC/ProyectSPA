@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from "react";
 import { Link,useNavigate } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 
 
@@ -56,26 +57,54 @@ const Registro = () => {
 
   return (
    
-    <div>
-          <label>Nombre</label>
-          <input id="nombre" type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
 
-          <label>Apellido</label>
-          <input id="apellido" type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
+    <div id="registro">
+     
 
-          <label>Email</label>
-          <input id="email" type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
+          <Form>
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>Nombre</Form.Label>
+        <Form.Control id="nombre" type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
+        <Form.Text className="text-muted">
+         
+        </Form.Text>
+      </Form.Group>
 
-          <label>Contraseña</label>
-          <input id="contrasena" type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} />
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>Apellido</Form.Label>
+        <Form.Control id="apellido" type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} /> 
 
-          <label>Username</label>
-          <input id="username" type="text" placeholder="Pon tu username" onChange={(e) => setUsername(e.target.value)} />
-          <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
+      </Form.Group>
+
+      
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control id="email" type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
+
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control id="contrasena" type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} /> 
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>UserName</Form.Label>
+        <Form.Control id="username" type="text" placeholder="Pon tu UserName" onChange={(e) => setUsername(e.target.value)} />
+
+      </Form.Group>
+      
+      <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
 
 
-          
-          <button id="boton" class="btn btn-dark" onClick={() => enviar()}>Registrarse</button>
+
+      <Button variant="primary"  onClick={() => enviar()}>
+        Registrarse
+      </Button>
+
+      
+    </Form>
+
     </div>
   );
 }

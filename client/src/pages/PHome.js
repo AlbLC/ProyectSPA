@@ -16,6 +16,7 @@ function PHome() {
     <div className="App">
        <Header pagina="home"/>  
       <Home/>       
+      
     </div>
 
   );

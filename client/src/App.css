@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+.buttonHome {
+  
+  
+  text-decoration: none
+
+}
+
+#login{
+  
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+
+}
+
+#registro{
+  
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+
+}
+
+#verificacion{
+    
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+  
+}
+
+#homeprueba{
+      
+      text-align: left;
+      display: flex;
+      justify-content: center;
+      margin-top: 5%;
+    
+}

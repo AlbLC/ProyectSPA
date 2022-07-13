@@ -1,5 +1,5 @@
 
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Form } from 'react-bootstrap'
 import React, { useState, useEffect } from "react";
 
 //Componente funcional -> 
@@ -83,26 +83,42 @@ const inscribir = (idprueba) => {
 
 
     return (
-<div>
-    
-          <label>Tipo de prueba</label>
+<div >
+
+  <div id="homeprueba" >
+  
+  <Form>
          
-          <select name="cars" id="cars" onChange={(e) => setTipoPrueba(e.target.value)}>
-          <option value="running">running</option>
-          <option value="natación">natación</option>
-           <option value="triatlón">triatlón</option>
-           
-          </select>
-
-
-          <label>Fecha de inicio</label>
-          <input type="date" onChange={(e) => setFechaInicio(e.target.value)} />
-          <label>Fecha fin </label>
-          <input type="date" onChange={(e) => setFechaFin(e.target.value)} />
-          {yainscrito===true?<p>inscrito correctamente</p>:yainscrito===false?<p>ya te as inscrito</p>:<p></p>}
-          <button onClick={() => sendBusqueda()}>Buscar</button>
-
           
+            <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Selecciona tu prueba</Form.Label>
+            <Form.Control as="select" onChange={(e) => setTipoPrueba(e.target.value)}>
+            <option>Tipo de prueba</option>
+              <option value="running">running</option>
+              <option value="natación">natación</option>
+              <option value="triatlón">triatlón</option>
+            </Form.Control>
+          </Form.Group>
+
+
+ 
+ 
+   <Form.Group className="mb-3" controlId="">
+     <Form.Label>Fecha de Inicio</Form.Label>
+     <Form.Control type="date" onChange={(e) => setFechaInicio(e.target.value)}/>
+     
+   </Form.Group>
+
+   <Form.Group className="mb-3" controlId="">
+     <Form.Label>Fecha de Fin</Form.Label>
+     <Form.Control type="date" onChange={(e) => setFechaFin(e.target.value)} />
+   </Form.Group>
+   <Button variant="primary" onClick={() => sendBusqueda()}>Buscar</Button> 
+   </Form>
+   
+   </div>
+   {yainscrito===true?<p>inscrito correctamente</p>:yainscrito===false?<p>ya te as inscrito</p>:<p></p>}
+
 
           {busqueda ? busqueda.map((busqued, i) => {
           return (
@@ -119,7 +135,8 @@ const inscribir = (idprueba) => {
             </Card>
           )
         }) : <div>
-            
+           
+
         </div>}
         
     {info===true ? <div>
@@ -140,12 +157,16 @@ const inscribir = (idprueba) => {
               </Card.Body>
             </Card>
     </div>:""}
+
+
+
+    
 </div>
+
     );
 
 
 }
 export default Home;
-
 
 
