@@ -1,6 +1,7 @@
 // importar React de la biblioteca.
 import React from 'react'; 
 import { useState, useEffect} from 'react';
+import { Form, Button } from 'react-bootstrap';
 
 
 const Verificacion = (props) => {
@@ -63,23 +64,37 @@ Es decir, lo que está más abajo en HTML*/
 
 return (
 
-<div id='login'>
+<div>
     
-  <div class="nick">
-    <label for="exampleInputEmail1" class="form-label">Introduce el código de inscripción</label>
-    <input type="text" class="form-control" onChange={(e) => setId_usuario_pruebas(e.target.value)}/>
-    <div id="emailHelp" class="form-text"></div>
-  </div>
-  <div class="contrasena">
-    <label for="exampleInputPassword1" class="form-label">Introduce tu número de tarjeta</label>
-    <input type="password" class="form-control" onChange={(e) => setTarjeta(e.target.value)}/>
-  </div>
- 
-  <button class="btn btn-dark" onClick={() => verificar()}>COMPROBAR</button>
+   <div id="verificacion">
+  <Form>
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>Introduce el código de inscripción</Form.Label>
+        <Form.Control type="text" class="form-control" onChange={(e) => setId_usuario_pruebas(e.target.value)}/>
+        <Form.Text className="text-muted">
+         
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>Introduce tu número de tarjeta</Form.Label>
+        <Form.Control type="password" class="form-control" onChange={(e) => setTarjeta(e.target.value)}/>
+      </Form.Group>
+      
+      <Button variant="primary"  onClick={() => verificar()}>COMPROBAR
+        
+      </Button>
+    </Form>
+    </div>
+    <br/>
+    <br/>
+    
+    <div >
 {dorsal=="" ? "": 
 
   dorsal.estado ?
-<div>
+  
+<div id="">
 <p>El dorsal con el numero {dorsal.dorsal} ya esta entregado</p>
 <p>Datos de la prueba</p>
 <p>nombre: {prueba.nombreprueba}</p>  
@@ -98,10 +113,11 @@ return (
   <p>Fecha fin: {prueba.fechafin}</p>
   <p>Precio: {prueba.precio}</p>
   <p>Descripcion: {prueba.descripcion}</p>
-  <button class="btn btn-dark" onClick={() => entregar(dorsal.dorsal)}>Entregar</button>
+  <Button class="btn btn-dark" onClick={() => entregar(dorsal.dorsal)}>Entregar</Button>
     </div>
-
+   
 }
+</div>
   </div>
 
     )

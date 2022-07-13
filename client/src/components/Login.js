@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 const Login = (props) => {
   /* ESTAS DOS CONSTANTES NO RECUERDO PARA QUE ERAN, entiendo que es para coger los valores de los inputs con usestate 
@@ -45,26 +46,39 @@ const Login = (props) => {
         
       });
 
-    //props.mandarImagen.bind(this, 5) 
   }
 
   return (
 
-    <div id='login'>
-      LOGIN:
-      <div class="nick">
-        <label for="exampleInputEmail1" class="form-label">Nickname</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setUsername(e.target.value)} />
-        <div id="emailHelp" class="form-text"></div>
-      </div>
-      <div class="contrasena">
-        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" onChange={(e) => setContrasena(e.target.value)} />
-      </div>
+    <div >
+   
+<div id='login'>
+      <Form>
+      <Form.Group className="mb-3" controlId="">
+        <Form.Label>UserName</Form.Label>
+        <Form.Control type="text" placeholder="Pon tu UserName" onChange={(e) => setUsername(e.target.value)} />
+        <Form.Text className="text-muted">
+         
+        </Form.Text>
+      </Form.Group>
 
-      <button class="btn btn-dark" onClick={() => entrar()}>ENTRAR</button>
-      <p> {login != true ? "Email o contraseña incorrectos" : ""}</p>
-
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control type="password"  placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} />
+      </Form.Group>
+      
+      <Button variant="primary"  onClick={() => entrar()}>
+        Entrar
+      </Button>
+    </Form>
+    
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div>
+    <p> {login != true ? "Email o contraseña incorrectos" : ""}</p>
+    </div>
     </div>
 
   )
