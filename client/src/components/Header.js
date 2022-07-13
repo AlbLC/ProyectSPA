@@ -10,8 +10,8 @@ function Header(props) {
     const navigate = useNavigate()
     const sendDesconectar = () => {
        localStorage.clear()
-       navigate("/")
-
+       window.location.assign("/");
+       
     };
 
     console.log(props.pagina1)
@@ -21,15 +21,15 @@ function Header(props) {
             
                 <div class="navbar-sing"> 
         
-                {props.pagina=="home" ? "":<button className="buttonHome"><Link to={"/"} className="buttonHome">Home</Link></button>}
+                {props.pagina=="home" ? "":props.pagina3=="verificacion"?"":<button className="buttonHome"><Link to={"/"} className="buttonHome">Home</Link></button>}
 
-                    {props.pagina1=="login" ? "":<button className="buttonHome"><Link to={"/login"}className="buttonHome">Login</Link></button>}
+                    {props.pagina1=="login" ? "":props.pagina3=="verificacion"?"":<button className="buttonHome"><Link to={"/login"}className="buttonHome">Login</Link></button>}
 
-                    {props.pagina2=="registro" ? "":<button className="buttonHome"><Link to={"/registro"} className="buttonHome">Registro</Link></button>}
+                    {props.pagina2=="registro" ? "":props.pagina3=="verificacion"?"":<button className="buttonHome"><Link to={"/registro"} className="buttonHome">Registro</Link></button>}
 
                     {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<button onClick={() => sendDesconectar()}>desconectar</button>}
 
-                   {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<button className="buttonHome"><Link to={"/editarPerfil"} className="buttonHome">Editar perfil</Link></button>}
+                   {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":props.pagina3=="verificacion"?"":<button className="buttonHome"><Link to={"/editarPerfil"} className="buttonHome">Editar perfil</Link></button>}
 
                 </div>
                 

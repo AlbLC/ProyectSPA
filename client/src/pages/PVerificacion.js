@@ -16,7 +16,7 @@ function PVerificacion() {
   return (
 
      <div className="App">
-          
+          <Header pagina3="verificacion"/>
        <Verificacion/>        
      </div>
 
