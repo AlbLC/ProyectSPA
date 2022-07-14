@@ -98,7 +98,7 @@ const Registro = () => {
 
 
 
-      <Button variant="primary"  onClick={() => enviar()}>
+      <Button id="boton" variant="primary"  onClick={() => enviar()}>
         Registrarse
       </Button>
 
