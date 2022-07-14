@@ -14,7 +14,7 @@ function Home() {
     const [user,setUser] = useState(usuario);
     const [tarjeta,setTarjeta] = useState("");
     const [yainscrito,setYainscrito] = useState("");
-
+    
  
    
  

@@ -8,6 +8,7 @@ import { Button } from 'react-bootstrap';
 
 
 function Header(props) {
+    const [logeado,setLogeado]=useState(localStorage.getItem("user"))
     const navigate = useNavigate()
     const sendDesconectar = () => {
        localStorage.clear()
@@ -23,21 +24,19 @@ function Header(props) {
                 <div class="navbar-sing"> 
                 
         
-                {props.pagina=="home" ? "":props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/"} className="buttonHome">Home</Link></Button>}
+                {props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/"} className="buttonHome">Home</Link></Button>}
 
-                    {props.pagina1=="login" ? "":props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/login"}className="buttonHome">Login</Link></Button>}
+                    {props.pagina3=="verificacion"?"":logeado!=null ? "":<Button variant="light" size="lg" className="buttonHome"><Link to={"/login"}className="buttonHome">Login</Link></Button>}
 
-                    {props.pagina2=="registro" ? "":props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/registro"} className="buttonHome">Registro</Link></Button>}
-
-                    {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<Button variant="dark"  onClick={() => sendDesconectar()}>desconectar</Button>}
-
-
-                   {props.pagina=="home" ? "": props.pagina1=="login" ? "":props.pagina2=="registro" ? "":props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/editarPerfil"} className="buttonHome">Editar perfil</Link></Button>}
-
+                    {props.pagina3=="verificacion"?"":logeado!=null ? "":<Button variant="light" size="lg" className="buttonHome"><Link to={"/registro"} className="buttonHome">Registro</Link></Button>}
 
                    
-                   
-                   {props.pagina1=="login" ? "":props.pagina2=="registro" ? "":<Button variant="light" size="lg" className="buttonHome"><Link to={"/historial"} className="buttonHome">Historial</Link></Button>}
+
+
+                   {logeado!= null?props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/perfil"} className="buttonHome">Perfil</Link></Button>:""}
+
+                   {logeado!= null?props.pagina3=="verificacion"?"":<Button variant="light" size="lg" className="buttonHome"><Link to={"/historial"} className="buttonHome">Historial</Link></Button>:""}
+                   {logeado!=null? <Button variant="dark"  onClick={() => sendDesconectar()}>desconectar</Button>:""}
 
                 </div>
                 

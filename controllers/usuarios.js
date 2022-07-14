@@ -366,7 +366,22 @@ const usuarios = {
       res.send(error);
     }
   },
+  perfil: async (req, res) => {
 
+    if(req.body.num == 1){
+      const cambioemail = await Usuario.update({ email: req.body.email }, {
+        where: { username: req.body.user },
+      });
+      res.json({cambio:1})
+    }else if(req.body.num==2){
+      const passwordHash = await encrypt(req.body.contrasena);
+      const cambiocontrasena = await Usuario.update({ contrasena: passwordHash }, {
+        where: { username: req.body.user },
+      });
+      res.json({cambio:2})
+    }
+
+  }
 }
 
 
