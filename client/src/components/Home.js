@@ -68,11 +68,12 @@ const [inscribirse,setInscribirse] = useState(0)
 
 
   return (
-    <div className='tarjetasbusquedas'>
+    <div>
+
 
       <div id="homeprueba" >
 
-        <Form>
+<Form>
 
 
           <Form.Group controlId="exampleForm.ControlSelect1">
@@ -88,44 +89,49 @@ const [inscribirse,setInscribirse] = useState(0)
 
 
 
-          <Form.Group className="mb-3" controlId="">
-            <Form.Label>Fecha de Inicio</Form.Label>
-            <Form.Control type="date" onChange={(e) => setFechaInicio(e.target.value)} />
+ 
+ 
+   <Form.Group className="mb-3" controlId="">
+     <Form.Label>Fecha de Inicio</Form.Label>
+     <Form.Control type="date" onChange={(e) => setFechaInicio(e.target.value)}/>
+     
+   </Form.Group>
 
-          </Form.Group>
+   <Form.Group className="mb-3" controlId="">
+     <Form.Label>Fecha de Fin</Form.Label>
+     <Form.Control type="date" onChange={(e) => setFechaFin(e.target.value)} />
+   </Form.Group>
+   <Button variant="primary" onClick={() => sendBusqueda()}>Buscar</Button> 
+   </Form>
+   
+  
+   </div>
+   <div className="tarjetasbusquedas">
+          {busqueda ? busqueda.map((busqued, i) => {
+          return (
+            
+            <Card style={{ width: '18rem' }} key={i}>
+              
 
-          <Form.Group className="mb-3" controlId="">
-            <Form.Label>Fecha de Fin</Form.Label>
-            <Form.Control type="date" onChange={(e) => setFechaFin(e.target.value)} />
-          </Form.Group>
-          <Button variant="primary" onClick={() => sendBusqueda()}>Buscar</Button>
-        </Form>
+              <Card.Body>
+                <Card.Title>{busqued.nombreprueba}</Card.Title>
+                <Card.Text>{busqued.tipo}</Card.Text>
+                <Card.Text>{busqued.precio} €</Card.Text>
+                
+                <Button onClick={() => verinfo(i)} variant="info">Info</Button>
+              </Card.Body>
+            </Card>
+          )
+        }) : <div>
+           
 
+        </div>}
+        
+    {info===true ? <div>
+      <Card style={{ width: '18rem' }} key={descripcion.id_prueba}>
+              
 
-      </div>
-
-      {busqueda ? busqueda.map((busqued, i) => {
-        return (
-          <Card style={{ width: '18rem' }} key={i}>
-
-
-            <Card.Body>
-              <Card.Title>{busqued.nombreprueba}</Card.Title>
-              <Card.Text>{busqued.tipo}</Card.Text>
-              <Card.Text>{busqued.precio} €</Card.Text>
-
-              <Button onClick={() => verinfo(i)} variant="info">Info</Button>
-            </Card.Body>
-          </Card>
-        )
-      }) : <div>
-
-
-      </div>}
-
-      {info === true ? <div>
-        <Card style={{ width: '18rem' }} key={descripcion.id_prueba}>
-
+              
 
           <Card.Body>
             <Card.Title>{descripcion.nombreprueba}</Card.Title>
@@ -149,14 +155,18 @@ const [inscribirse,setInscribirse] = useState(0)
       </Card> : yainscrito === false ? <Card style={{ width: '12rem' }}>
 
         <Card.Body>
-          <Card.Title>YA ESTÁS INSCRITO</Card.Title>
-          <Card.Text>Ya te inscribiste a la prueba</Card.Text>
+          <Card.Title>YA ESTABAS INSCRITO</Card.Title>
+          <Card.Text>No te puedes volver a inscribir</Card.Text>
         </Card.Body>
       </Card> : <p></p>}
 
       
       {inscribirse ===1?<Inscripcion idprueba={descripcion.id_prueba} />:""}
     </div>
+
+          
+</div>
+
 
   );
 
