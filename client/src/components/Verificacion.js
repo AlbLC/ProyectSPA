@@ -16,7 +16,7 @@ Es decir, lo que está más abajo en HTML*/
    
    //OJO, ESTO VIENE DE LA TABLA DE LA RELACION USUSARIO-PRUEBAS
     const verificar = () => {
-           
+        console.log(id_usuario_pruebas)
         const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ Es decir, lo que está más abajo en HTML*/
         } 
 
         const entregar = (inscripcion) => {
-           
+           console.log(inscripcion)
           const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -113,7 +113,7 @@ return (
   <p>Fecha fin: {prueba.fechafin}</p>
   <p>Precio: {prueba.precio}</p>
   <p>Descripcion: {prueba.descripcion}</p>
-  <Button class="btn btn-dark" onClick={() => entregar(dorsal.dorsal)}>Entregar</Button>
+  <Button class="btn btn-dark" onClick={() => entregar(id_usuario_pruebas)}>Entregar</Button>
     </div>
    
 }
