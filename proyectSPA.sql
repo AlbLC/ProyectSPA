@@ -36,7 +36,7 @@
         id_usuario_pruebas INT AUTO_INCREMENT, #tambien se utiliza como codigo de inscripcion
         fk_usuario INT,
 		fk_pruebas INT,
-        tarjeta INT(16),
+        tarjeta BIGINT(100),
         dorsal INT(100),
         estado boolean,				#para saber si el dorsal ha sido entregado o no
 		PRIMARY KEY(id_usuario_pruebas),
@@ -52,6 +52,6 @@ SELECT * FROM pruebas;
 	INSERT INTO pruebas VALUES (NULL, "2022-06-20","2022-06-25", "TRI Race 2022", "100", "triatlón", "on tres actividades deportivas incluidas en el triatlón: natación, bicicleta y las carreras a pie. Este es el orden de las disciplinas que se deben de desarrollar. La primera prueba del triatlón, la natación, se realiza en aguas abiertas, donde se debe delimitar el recorrido, que es de aproximadamente 1.500 metros, según el triatlón olímpico.","4");
 SELECT * FROM usuarios;
 INSERT INTO usuarios VALUES (null, "juan","vale", "javier@gmail.com", "$2a$10$lj3VOkVSqGz.WZUd8fFm6.PxDN8XnmYw4uUS6eccmdduX9mRQIb3m", "javier", true);
-    INSERT INTO usuario_pruebas values (NULL, 1, 1, 1234, 1, true);
-    INSERT INTO usuario_pruebas values (NULL, 1, 2, 1234, 2, false);
-    INSERT INTO usuario_pruebas values (NULL, 1, 2, 1234, 3, false);
+    INSERT INTO usuario_pruebas values (NULL, 1, 1, 1234567812345678, 1, true);
+    INSERT INTO usuario_pruebas values (NULL, 1, 2, 1234567812345678, 2, false);
+    INSERT INTO usuario_pruebas values (NULL, 1, 2, 1234567812345678, 3, false);
