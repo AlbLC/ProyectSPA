@@ -126,6 +126,7 @@ setElementsForCurrentPage() {
     .slice(this.state.offset, this.state.offset + this.state.perPage)
     .map((prueba, i) => {
       return (
+        
         <tr key={i}>
           <td>{prueba.id_prueba}</td>
           <td>{prueba.nombreprueba}</td>
@@ -135,6 +136,7 @@ setElementsForCurrentPage() {
           <td>{prueba.precio}</td>
           <td></td>
         </tr>
+        
       );
     });
   this.setState({ elements: elements });
