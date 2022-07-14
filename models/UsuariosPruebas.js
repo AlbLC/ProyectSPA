@@ -17,7 +17,7 @@ const UsuariosPruebas = sequelize.define('usuario_pruebas', {
     allowNull: false,
   },
   tarjeta: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     allowNull: false,
   }, 
   dorsal: {

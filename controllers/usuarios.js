@@ -287,9 +287,10 @@ const usuarios = {
 
   entregar: async (req, res) => {
     try {
+
       //console.log(req.body.numeroInscripcion)
       const numInscripcion = req.body.numeroInscripcion
-
+      console.log(numInscripcion)
       const entregar = await UsuariosPruebas.update({ estado: true }, {
         where: { id_usuario_pruebas: numInscripcion },
       });
@@ -304,8 +305,8 @@ const usuarios = {
       });
 
       const prueba = await Prueba.findOne({ where: { id_prueba: verificacion.fk_pruebas } })
-      console.log(verificacion)
-      console.log(prueba)
+      //console.log(verificacion)
+      //console.log(prueba)
 
 
       res.json({ dorsal: verificacion, prueba: prueba })
