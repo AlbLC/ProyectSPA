@@ -83,7 +83,7 @@ const inscribir = (idprueba) => {
 
 
     return (
-<div >
+<div className='tarjetasbusquedas'>
 
   <div id="homeprueba" >
   
@@ -116,9 +116,8 @@ const inscribir = (idprueba) => {
    <Button variant="primary" onClick={() => sendBusqueda()}>Buscar</Button> 
    </Form>
    
+  
    </div>
-   {yainscrito===true?<p>inscrito correctamente</p>:yainscrito===false?<p>ya te as inscrito</p>:<p></p>}
-
 
           {busqueda ? busqueda.map((busqued, i) => {
           return (
@@ -146,11 +145,11 @@ const inscribir = (idprueba) => {
               <Card.Body>
                 <Card.Title>{descripcion.nombreprueba}</Card.Title>
                 <Card.Text>{descripcion.tipo}</Card.Text>
-                <Card.Text>{descripcion.precio} </Card.Text>
+                <Card.Text>{descripcion.precio} €</Card.Text>
                 <Card.Text>{descripcion.fechainicio} </Card.Text>
                 <Card.Text>{descripcion.fechafin} </Card.Text>
                 <Card.Text>{descripcion.descripcion} </Card.Text>
-                <Card.Text>Plazas disponible {descripcion.participantes_max} </Card.Text>
+                <Card.Text>Plazas disponibles: {descripcion.participantes_max} </Card.Text>
                 {usuario==null?"":<Card.Text>Para inscribirte introduce tu numero de tarjeta </Card.Text>}
                 {usuario==null?"":<input type="text" onChange={(e) => setTarjeta(e.target.value)}/>}
                   { tarjeta===""?"":<Button onClick={() => inscribir(descripcion.id_prueba)} variant="info">Inscribete</Button>  } 
@@ -158,6 +157,19 @@ const inscribir = (idprueba) => {
             </Card>
     </div>:""}
 
+    {yainscrito===true?<Card style={{ width: '12rem' }}>         
+
+              <Card.Body>
+                <Card.Title>ENHORABUENA</Card.Title>
+                <Card.Text>Te has inscrito correctamente</Card.Text>         
+              </Card.Body>
+            </Card>:yainscrito===false?<Card style={{ width: '12rem' }}>         
+
+            <Card.Body>
+              <Card.Title>YA ESTÁS INSCRITO</Card.Title>
+              <Card.Text>Ya te inscribiste a la prueba</Card.Text>         
+            </Card.Body>
+            </Card>:<p></p>}
 
 
     

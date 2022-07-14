@@ -79,3 +79,22 @@
       margin-top: 5%;
     
 }
+
+/* SON LAS TARJETAS QUE VAN A PARECIENDO EN LAS BUSQUEDAS */
+.tarjetasbusquedas{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+tr{
+  color: black;
+  
+}
+td{
+  color: black;
+}
+
+.page-item{
+  text-decoration: none;
+}

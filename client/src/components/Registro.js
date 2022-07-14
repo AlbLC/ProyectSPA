@@ -79,7 +79,7 @@ const Registro = () => {
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
-        <Form.Control id="email" type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)}/>
+        <Form.Control id="email" type="email" placeholder="Pon tu email"  onChange={(e) => setEmail(e.target.value)} />
 
       </Form.Group>
 
