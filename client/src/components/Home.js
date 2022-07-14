@@ -83,7 +83,7 @@ const inscribir = (idprueba) => {
 
 
     return (
-<div className='tarjetasbusquedas'>
+<div>
 
   <div id="homeprueba" >
   
@@ -118,9 +118,10 @@ const inscribir = (idprueba) => {
    
   
    </div>
-
+   <div className="tarjetasbusquedas">
           {busqueda ? busqueda.map((busqued, i) => {
           return (
+            
             <Card style={{ width: '18rem' }} key={i}>
               
 
@@ -172,7 +173,7 @@ const inscribir = (idprueba) => {
             </Card>:<p></p>}
 
 
-    
+            </div>
 </div>
 
     );

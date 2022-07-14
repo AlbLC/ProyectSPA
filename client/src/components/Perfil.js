@@ -39,15 +39,17 @@ const Perfil = (props) => {
    
     return (
 
-        <div >
+        <div id='perfil' >
 
-            <div id='perfil'>
+            <div >
                 <Form.Label>Introduce tu nuevo email</Form.Label>
                 <Form.Control type="text" placeholder="Pon tu UserName" onChange={(e) => setEmail(e.target.value)} />
 
                 <Button variant="primary" onClick={() => email1(1)}>
                     Cambiar Email
                 </Button>
+                <br />
+                <br />
                 <br />
                 <Form.Label>Introduce tu nueva contraseña</Form.Label>
                 <Form.Control type="text" placeholder="Pon tu UserName" onChange={(e) => setContrasena(e.target.value)} />
